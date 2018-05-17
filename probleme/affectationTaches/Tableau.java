@@ -1,6 +1,6 @@
-class Tableau{
+public class Tableau{
 
-  private int[][] tableauTemps;
+  int[][] tableauTemps;
 
   public Tableau(int[][] tab) {
     tableauTemps = new int[tab.length][tab[0].length];

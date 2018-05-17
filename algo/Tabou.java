@@ -3,7 +3,6 @@ package algo;
 import generic.AlgorithmeAbstract;
 import generic.ProblemeAbstract;
 import generic.SolutionAbstract;
-import probleme.quatreCouleurs.Solution4Couleurs;
 
 import java.util.Iterator;
 import java.util.List;

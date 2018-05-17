@@ -1,12 +1,14 @@
 package probleme.affectationTaches;
 
+import generic.ProblemeAbstract;;
+
 import probleme.affectationTaches.SolutionAffectationTaches;
 
 /**
  * Classe permettant d'implementer le probleme d'affectation de taches
  */
 
-public class ProblemeAffectationTaches extends ProblemeAbstract {
+public class ProblemeAffectationTaches implements ProblemeAbstract {
 
     /**
      * Nombre de taches a effectuer

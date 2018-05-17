@@ -28,7 +28,7 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     /**
      * @param n : nombre de taches a affecter
      */
-    public SolutionAffectationTaches(int n) {
+    public SolutionAffectationTaches(int n) {
         affectations = new int[n];
         for (int i = 0; i < n; i++) {
             affectations[i] = -1;
@@ -45,7 +45,7 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     public SolutionAffectationTaches(SolutionAffectationTaches s) {
         this.problemeATraiter = s.problemeATraiter;
         this.affectations = s.affectations.clone();
-        this.problemeATraiter = s.profondeurTraitee;
+        this.profondeurTraitee = s.profondeurTraitee;
         this.tempsTotal = s.tempsTotal;
     }
 
