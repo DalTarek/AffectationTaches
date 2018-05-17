@@ -1,6 +1,7 @@
 package probleme.affectationTaches;
 
-import generic.ProblemeAbstract;;
+import generic.ProblemeAbstract;
+import generic.SolutionAbstract;
 
 import probleme.affectationTaches.SolutionAffectationTaches;
 
@@ -33,14 +34,14 @@ public class ProblemeAffectationTaches implements ProblemeAbstract {
     public ProblemeAffectationTaches(int p, int t, Tableau tab) {
         nbTaches = t;
         nbPersonnes = p;
-        tableauTemps = tab;
+        tempsPourTaches = tab;
     }
 
     /**
      * Permet d'evaluer une solution
      */
     @Override
-    public double evaluer(SolutionAbstract s) {
+    public double evaluation(SolutionAbstract s) {
         // teste que la solution est du bon type
 		if (!(s instanceof SolutionAffectationTaches)) {
 			throw new IllegalArgumentException("mauvais types");

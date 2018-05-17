@@ -1,3 +1,5 @@
+package probleme.affectationTaches;
+
 public class Tableau{
 
   int[][] tableauTemps;

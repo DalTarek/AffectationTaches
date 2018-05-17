@@ -1,5 +1,8 @@
 package probleme.affectationTaches;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import generic.SolutionAbstract;
 
 public class SolutionAffectationTaches extends SolutionAbstract {
@@ -52,17 +55,18 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     /**
      * retourne le voisinage de la solution
      */
-    public SolutionAbstract[] solutionsVoisines() {
+    public List<SolutionAbstract> retourneVoisinage() {
         if (this.estComplete()) {
-            return new SolutionAbstract[0];
+            return new ArrayList<>();
         }
 
-        SolutionAbstract[] solutions = new SolutionAbstract[problemeATraiter.nbPersonnes];
+        ArrayList<SolutionAbstract> solutions = new ArrayList<>();
 
         for (int i = 0; i < problemeATraiter.nbPersonnes; i++) {
             SolutionAffectationTaches solutionPersonneI = new SolutionAffectationTaches(this);
             solutionPersonneI.profondeurTraitee++;
             solutionPersonneI.affecter(i);
+            solutions.add(solutionPersonneI);
         }
 
         return solutions;
@@ -74,11 +78,11 @@ public class SolutionAffectationTaches extends SolutionAbstract {
         int sommeTempsPersonneI = 0;
         for (int j = 0; j < affectations.length; j++) {
             if (affectations[j] == i) {
-                sommeTempsPersonneI += problemeATraiter.tempsPourTaches[i][j];
+                sommeTempsPersonneI += problemeATraiter.tempsPourTaches.tableauTemps[i][j];
             }
         }
 
-        sommeTempsPersonneI += problemeATraiter.tempsPourTaches[i][profondeurTraitee];
+        sommeTempsPersonneI += problemeATraiter.tempsPourTaches.tableauTemps[i][profondeurTraitee];
 
         if (sommeTempsPersonneI > tempsTotal) {
             tempsTotal = sommeTempsPersonneI;
@@ -92,4 +96,5 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     public boolean estComplete() {
         return profondeurTraitee == problemeATraiter.nbPersonnes;
     }
+
 }
