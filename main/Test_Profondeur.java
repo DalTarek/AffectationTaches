@@ -1,23 +1,21 @@
 package main;
 
-import algorithmes.AlgorithmeGreedy;
 import generic.AlgorithmeAbstract;
 import generic.SolutionPartielle;
 import probleme.affectationTaches.ProblemeAffectationTaches;
 import probleme.affectationTaches.Tableau;
+import algorithmes.AlgorithmeParcoursProfondeur;
 
-public class Test_Greedy {
-	
+public class Test_Profondeur {
 	public static void main(String[] args) {
-		System.out.println("Greedy problème moins simple");
+		System.out.println("Profondeur problème moins simple");
 		// on cr�e le probl�me
 		ProblemeAffectationTaches probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeMoinsSimple());
 		
 		// on cr�e l'algorithme
-		AlgorithmeAbstract greedy = new AlgorithmeGreedy(probleme);
+		AlgorithmeAbstract profondeur = new AlgorithmeParcoursProfondeur(probleme);
 		
-		SolutionPartielle resultat = greedy.construireMeilleur();
+		SolutionPartielle resultat = profondeur.construireMeilleur();
 		System.out.println(resultat);
 	}
-
 }

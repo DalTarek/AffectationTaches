@@ -19,9 +19,9 @@ public class ValeurAEtoile implements Comparable<ValeurAEtoile> {
 	@Override
 	public int compareTo(ValeurAEtoile o) {
 		if (this.valeurEstimee < o.valeurEstimee)
-			return (1);
-		else if (this.valeurEstimee > o.valeurEstimee)
 			return (-1);
+		else if (this.valeurEstimee > o.valeurEstimee)
+			return (1);
 		else
 			return 0;
 	}

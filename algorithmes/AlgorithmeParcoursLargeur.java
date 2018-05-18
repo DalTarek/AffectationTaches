@@ -85,7 +85,7 @@ public class AlgorithmeParcoursLargeur extends AlgorithmeAbstract {
 		SolutionPartielle meilleur = null;
 		double min = Double.MAX_VALUE;
 		for (SolutionPartielle s : liste) {
-			if (this.problemeAResoudre.evaluer(s) < min) {
+			if (this.problemeAResoudre.evaluer(s) <= min) {
 				min = this.problemeAResoudre.evaluer(s);
 				meilleur = s;
 			}

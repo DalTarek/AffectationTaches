@@ -71,14 +71,14 @@ public class AlgorithmeBranchAndBoundProfondeur extends AlgorithmeAbstract {
 						double maxFils = minFils + heuristique.estimer(fils);
 
 						// si le fils ameliore mon minimum garanti
-						if (minFils > minGaranti)
+						if (maxFils < minGaranti)
 							minGaranti = minFils;
 
 						// si la valeur esperee au mieux est plus petite que le
 						// minimum garanti
 						// on elague
 						// sinon on ajoute à la liste ouverte
-						if (maxFils >= minGaranti) {
+						if (minFils <= minGaranti) {
 							ouverte.addFirst(fils);
 						}
 

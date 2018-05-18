@@ -51,7 +51,7 @@ public class AlgorithmeBranchAndBound extends AlgorithmeAbstract {
 
 		// valeur maximale observee (utilisee pour filtrer dans branch and
 		// bound)
-		double minGaranti = 0;
+		double minGaranti = Double.MAX_VALUE;
 
 		// partie qui contruit la liste des solutions completes avec parcours en
 		// largeur
@@ -71,8 +71,7 @@ public class AlgorithmeBranchAndBound extends AlgorithmeAbstract {
 				complete.add(solutionCourante);
 			else { // - soit la solution est incomplete => ajoute les fils dans
 					// ouvert
-				for (SolutionPartielle fils : solutionCourante
-						.solutionsVoisines()) {
+				for (SolutionPartielle fils : solutionCourante.solutionsVoisines()) {
 					if (!fils.invalide()) {
 
 						// on regarde la valeur de evaluation du fils +
@@ -80,15 +79,15 @@ public class AlgorithmeBranchAndBound extends AlgorithmeAbstract {
 						double minFils = problemeAResoudre.evaluer(fils);
 						double maxFils = minFils + heuristique.estimer(fils);
 
-						// si le fils ameliore mon minimum garanti
-						if (minFils > minGaranti)
+						// si le fils ameliore mon maximum garanti
+						if (minFils < minGaranti)
 							minGaranti = minFils;
 
-						// si la valeur esperee au mieux est plus petite que le
-						// minimum garanti
+						// si la valeur esperee au mieux est plus grande que le
+						// maximum garanti
 						// on elague
 						// sinon on ajoute à la liste ouverte
-						if (maxFils >= minGaranti) {
+						if (maxFils <= minGaranti) {
 							ouverte.addLast(fils);
 						}
 
@@ -121,10 +120,10 @@ public class AlgorithmeBranchAndBound extends AlgorithmeAbstract {
 	private SolutionPartielle chercherMeilleureSolution(
 			ArrayList<SolutionPartielle> liste) {
 		SolutionPartielle meilleur = null;
-		double max = -1;
+		double min = Double.MAX_VALUE;
 		for (SolutionPartielle s : liste) {
-			if (this.problemeAResoudre.evaluer(s) >= max) {
-				max = this.problemeAResoudre.evaluer(s);
+			if (this.problemeAResoudre.evaluer(s) <= min) {
+				min = this.problemeAResoudre.evaluer(s);
 				meilleur = s;
 			}
 		}

@@ -1,8 +1,5 @@
 package probleme.affectationTaches;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import generic.SolutionPartielle;
 
 public class SolutionAffectationTaches extends SolutionPartielle {
@@ -78,7 +75,7 @@ public class SolutionAffectationTaches extends SolutionPartielle {
         return false;
     }
 
-    private void affecter(int i) {
+    public void affecter(int i) {
         affectations[profondeurTraitee] = i;
 
         // on calcule la somme de la dur�e des t�ches effectu�es par la personne i
@@ -101,12 +98,7 @@ public class SolutionAffectationTaches extends SolutionPartielle {
      * c'est a dire que toutes les taches sont affectees
      */
     public boolean estComplete() {
-    	for (int i = 0; i < affectations.length; i++) {
-    		if (affectations[i] == -1)
-    			return false;
-    	}
-    	
-    	return true;
+    	return this.profondeurTraitee >= this.problemeATraiter.nbTaches - 1;
     }
     
     /**
