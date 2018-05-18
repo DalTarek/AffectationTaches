@@ -42,7 +42,7 @@ public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
 
 		// sinon on cherche la meilleure solution sur le meilleur fils
 		SolutionPartielle[] solutionVoisines = solutionInitiale.solutionsVoisines();
-		double max = 0;
+		double min = Double.MAX_VALUE;
 		SolutionPartielle meilleureGlobale = null;
 
 		for (SolutionPartielle solutionAEtudier : solutionVoisines) {
@@ -51,8 +51,8 @@ public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
 			SolutionPartielle meilleureFille = calculerMax(solutionAEtudier);
 			// regarde si cette solution complete est la meilleure
 			double evaluation = this.problemeAResoudre.evaluer(meilleureFille);
-			if (evaluation >= max) {
-				max = evaluation;
+			if (evaluation < min) {
+				min = evaluation;
 				meilleureGlobale = meilleureFille;
 			}
 		}

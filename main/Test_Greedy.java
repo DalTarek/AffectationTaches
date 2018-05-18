@@ -1,8 +1,9 @@
 package main;
 
-import algo.Greedy;
+import algorithmes.AlgorithmeGreedy;
 import generic.AlgorithmeAbstract;
-import generic.ProblemeAbstract;
+import generic.Problem;
+import generic.SolutionPartielle;
 import probleme.affectationTaches.ProblemeAffectationTaches;
 import probleme.affectationTaches.SolutionAffectationTaches;
 import probleme.affectationTaches.Tableau;
@@ -10,19 +11,15 @@ import probleme.affectationTaches.Tableau;
 public class Test_Greedy {
 	
 	public static void main(String[] args) {
-		// on crée le problème
+		System.out.println("Greedy problÃ¨me moins simple");
+		// on crï¿½e le problï¿½me
 		ProblemeAffectationTaches probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeMoinsSimple());
 		
-		SolutionAffectationTaches s = new SolutionAffectationTaches(probleme);
+		// on crï¿½e l'algorithme
+		AlgorithmeAbstract greedy = new AlgorithmeGreedy(probleme);
 		
-		// on crée l'algorithme
-		AlgorithmeAbstract greedy = new Greedy(probleme, s);
-		
-		boolean fin = false;
-		while (!fin) {
-			fin = greedy.ameliorerSolution();
-			System.out.println(greedy.log());
-		}
+		SolutionPartielle resultat = greedy.construireMeilleur();
+		System.out.println(resultat);
 	}
 
 }

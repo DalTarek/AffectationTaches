@@ -3,9 +3,9 @@ package probleme.affectationTaches;
 import java.util.ArrayList;
 import java.util.List;
 
-import generic.SolutionAbstract;
+import generic.SolutionPartielle;
 
-public class SolutionAffectationTaches extends SolutionAbstract {
+public class SolutionAffectationTaches extends SolutionPartielle {
 
     /**
      * Probleme a traiter
@@ -40,7 +40,7 @@ public class SolutionAffectationTaches extends SolutionAbstract {
         }
 
         tempsTotal = 0;
-        profondeurTraitee = 0;
+        profondeurTraitee = -1;
         problemeATraiter = p;
     }
 
@@ -58,26 +58,30 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     /**
      * retourne le voisinage de la solution
      */
-    public List<SolutionAbstract> retourneVoisinage() {
+    public SolutionPartielle[] solutionsVoisines() {
         if (this.estComplete()) {
-            return new ArrayList<>();
+            return new SolutionPartielle[0];
         }
 
-        ArrayList<SolutionAbstract> solutions = new ArrayList<>();
+        SolutionPartielle[] solutions = new SolutionPartielle[problemeATraiter.nbPersonnes];
         for (int i = 0; i < problemeATraiter.nbPersonnes; i++) {
             SolutionAffectationTaches solutionPersonneI = new SolutionAffectationTaches(this);        
-            solutionPersonneI.affecter(i);
             solutionPersonneI.profondeurTraitee++;
-            solutions.add(solutionPersonneI);
+            solutionPersonneI.affecter(i);
+            solutions[i] = solutionPersonneI;
         }
 
         return solutions;
     }
 
+    public boolean invalide() {
+        return false;
+    }
+
     private void affecter(int i) {
         affectations[profondeurTraitee] = i;
 
-        // on calcule la somme de la durée des tâches effectuées par la personne i
+        // on calcule la somme de la durï¿½e des tï¿½ches effectuï¿½es par la personne i
         int sommeTempsPersonneI = 0;
         for (int j = 0; j < affectations.length; j++) {
             if (affectations[j] == i) {
@@ -85,7 +89,8 @@ public class SolutionAffectationTaches extends SolutionAbstract {
             }
         }
 
-        // on met à jour le temps total
+        // Si le temps total de la personne i depasse le temps total deja enregistre
+        // on met ï¿½ jour le temps total
         if (sommeTempsPersonneI > tempsTotal) {
             tempsTotal = sommeTempsPersonneI;
         }
@@ -105,7 +110,7 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     }
     
     /**
-     * On affiche la liste des tâches effectuées par chaque personne
+     * On affiche la liste des tï¿½ches effectuï¿½es par chaque personne
      */
     public String toString() {
     	StringBuilder sb = new StringBuilder();

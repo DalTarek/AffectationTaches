@@ -85,10 +85,10 @@ public class AlgorithmeParcoursLargeurFiltre extends AlgorithmeAbstract {
 	 */
 	private SolutionPartielle chercherMeilleureSolution(ArrayList<SolutionPartielle> liste) {
 		SolutionPartielle meilleur = null;
-		double max = -1;
+		double min = Double.MAX_VALUE;
 		for (SolutionPartielle s : liste) {
-			if (this.problemeAResoudre.evaluer(s) >= max) {
-				max = this.problemeAResoudre.evaluer(s);
+			if (this.problemeAResoudre.evaluer(s) < min) {
+				min = this.problemeAResoudre.evaluer(s);
 				meilleur = s;
 			}
 		}

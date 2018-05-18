@@ -1,7 +1,7 @@
 package probleme.affectationTaches;
 
-import generic.ProblemeAbstract;
-import generic.SolutionAbstract;
+import generic.Problem;
+import generic.SolutionPartielle;
 
 import probleme.affectationTaches.SolutionAffectationTaches;
 
@@ -9,7 +9,7 @@ import probleme.affectationTaches.SolutionAffectationTaches;
  * Classe permettant d'implementer le probleme d'affectation de taches
  */
 
-public class ProblemeAffectationTaches implements ProblemeAbstract {
+public class ProblemeAffectationTaches extends Problem {
 
     /**
      * Nombre de taches a effectuer
@@ -37,11 +37,15 @@ public class ProblemeAffectationTaches implements ProblemeAbstract {
         nbPersonnes = tab.tableauTemps.length;
     }
 
+    public SolutionPartielle solutionInitiale() {
+        return new SolutionAffectationTaches(this);
+    }
+
     /**
      * Permet d'evaluer une solution
      */
     @Override
-    public double evaluation(SolutionAbstract s) {
+    public double evaluer(SolutionPartielle s) {
         // teste que la solution est du bon type
 		if (!(s instanceof SolutionAffectationTaches)) {
 			throw new IllegalArgumentException("mauvais types");
