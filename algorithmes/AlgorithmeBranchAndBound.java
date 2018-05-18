@@ -80,8 +80,8 @@ public class AlgorithmeBranchAndBound extends AlgorithmeAbstract {
 						double maxFils = minFils + heuristique.estimer(fils);
 
 						// si le fils ameliore mon maximum garanti
-						if (minFils < minGaranti)
-							minGaranti = minFils;
+						if (maxFils < minGaranti)
+							minGaranti = maxFils;
 
 						// si la valeur esperee au mieux est plus grande que le
 						// maximum garanti

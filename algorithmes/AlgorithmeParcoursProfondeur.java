@@ -18,7 +18,7 @@ public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
 	 */
 	public SolutionPartielle construireMeilleur() {
 		SolutionPartielle s = (calculerMax(this.problemeAResoudre.solutionInitiale()));
-		System.out.println(compteur);
+		System.out.println("Nombre d'itérations : " + compteur);
 		return s;
 	}
 

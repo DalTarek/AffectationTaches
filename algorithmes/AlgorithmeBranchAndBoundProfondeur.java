@@ -41,7 +41,7 @@ public class AlgorithmeBranchAndBoundProfondeur extends AlgorithmeAbstract {
 
 		// valeur maximale observee (utilisee pour filtrer dans branch and
 		// bound)
-		double minGaranti = 0;
+		double minGaranti = Double.MAX_VALUE;
 
 		// partie qui contruit la liste des solutions completes avec parcours en
 		// largeur
@@ -72,13 +72,13 @@ public class AlgorithmeBranchAndBoundProfondeur extends AlgorithmeAbstract {
 
 						// si le fils ameliore mon minimum garanti
 						if (maxFils < minGaranti)
-							minGaranti = minFils;
+							minGaranti = maxFils;
 
 						// si la valeur esperee au mieux est plus petite que le
 						// minimum garanti
 						// on elague
 						// sinon on ajoute à la liste ouverte
-						if (minFils <= minGaranti) {
+						if (maxFils <= minGaranti) {
 							ouverte.addFirst(fils);
 						}
 

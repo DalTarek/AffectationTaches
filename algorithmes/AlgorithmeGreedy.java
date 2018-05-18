@@ -35,6 +35,8 @@ public class AlgorithmeGreedy extends AlgorithmeAbstract {
 			
 			enCours = meilleureSolution;
 		}
+
+		System.out.println("Nombre d'itérations : " + this.compteur);
 		
 		return enCours;
 	}
