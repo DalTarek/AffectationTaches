@@ -1,92 +1,30 @@
 package generic;
 
-import algo.Greedy;
-import algo.RecuitSimule;
-import algo.Tabou;
-
 /**
- * algorithme abstrait
- * <p>
- * se base sur un probleme abstrait et des solutions abstraites à implementer
+ * algoritghme abstrait à partir duquel construire les algorithmes
  * 
- * @author vthomas@loria.fr
  * 
  */
-
 public abstract class AlgorithmeAbstract {
 
 	/**
-	 * solution en cours à modifier au fur et mesure de l'algorithme
+	 * le nombre de noeuds visités
 	 */
-	protected SolutionAbstract solutionEnCours;
+	public long compteur;
 
 	/**
-	 * probleme sur lequel appliquer la solution
+	 * le probleme a traiter
 	 */
-	protected ProblemeAbstract problemeATraiter;
+	protected Problem problemeAResoudre;
 
-	/**
-	 * construit un algorithme à partir d'une solution initiale
-	 * 
-	 * @param probleme
-	 *            definition du probleme à traiter
-	 * @param solutionInitiale
-	 *            solution initiale
-	 */
-	public AlgorithmeAbstract(ProblemeAbstract probleme, SolutionAbstract solutionInitiale) {
-		this.solutionEnCours = solutionInitiale;
-		this.problemeATraiter = probleme;
+	public AlgorithmeAbstract(Problem p) {
+		this.problemeAResoudre = p;
 	}
 
 	/**
-	 * méthode a redefinir
-	 * 
-	 * @return booleen pour arreter eventuellement la boucle
+	 * construit la meilleure solution au probleme
+	 * @return Solution optimale
 	 */
-	public abstract boolean ameliorerSolution();
-
-	/**
-	 * factory simple permet recuperer un algorithme donné
-	 * 
-	 * @param probleme
-	 *            le probleme à resoudre
-	 * @param solutionInitiale
-	 *            la solution initiale
-	 * @param nom
-	 *            le nom de l'algo
-	 */
-	public static AlgorithmeAbstract getAlgo(String nom, ProblemeAbstract probleme, SolutionAbstract solutionInitiale) {
-		switch (nom) {
-		case "greedy":
-			return new Greedy(probleme, solutionInitiale);
-		case "recuit":
-			return new RecuitSimule(probleme, solutionInitiale, 10000);
-		case "taboue":
-			return new Tabou(probleme, solutionInitiale, null);
-		}
-		return (null);
-	}
-
-	/**
-	 * permet de retourner la valeur de la solution courante
-	 * 
-	 * @return valeur de s selon probleme pb
-	 */
-	public double valeur() {
-		return problemeATraiter.evaluation(getSolutionEnCours());
-	}
-
-	/**
-	 * permet d'afficher le contenu de l'algo
-	 * 
-	 * @return par defaut la valeur
-	 */
-	public String log() {
-		return solutionEnCours.toString();
-	}
-
-	public SolutionAbstract getSolutionEnCours() {
-		return solutionEnCours;
-	}
+	public abstract SolutionPartielle construireMeilleur();
 
 }
