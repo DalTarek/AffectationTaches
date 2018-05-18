@@ -73,11 +73,10 @@ public class SolutionAffectationTaches extends SolutionAbstract {
         }
 
         ArrayList<SolutionAbstract> solutions = new ArrayList<>();
-
         for (int i = 0; i < problemeATraiter.nbPersonnes; i++) {
-            SolutionAffectationTaches solutionPersonneI = new SolutionAffectationTaches(this);
-            solutionPersonneI.profondeurTraitee++;
+            SolutionAffectationTaches solutionPersonneI = new SolutionAffectationTaches(this);        
             solutionPersonneI.affecter(i);
+            solutionPersonneI.profondeurTraitee++;
             solutions.add(solutionPersonneI);
         }
 
@@ -106,7 +105,13 @@ public class SolutionAffectationTaches extends SolutionAbstract {
      * c'est a dire que toutes les taches sont affectees
      */
     public boolean estComplete() {
-        return profondeurTraitee == problemeATraiter.nbPersonnes;
+        //return profondeurTraitee == problemeATraiter.nbPersonnes;
+    	for (int i = 0; i < affectations.length; i++) {
+    		if (affectations[i] == -1)
+    			return false;
+    	}
+    	
+    	return true;
     }
     
     public String toString() {
@@ -115,7 +120,7 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     		sb.append("Personne " + (i+1) + " : ");
     		for (int j = 0; j < affectations.length; j++) {
     			if (affectations[j] == i) {
-    				sb.append(j + " ");
+    				sb.append((j+1) + " ");
     			}	
     		}
     		sb.append("\n");		
