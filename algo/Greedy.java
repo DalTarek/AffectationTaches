@@ -30,7 +30,7 @@ public class Greedy extends AlgorithmeAbstract {
 	 * permet d'améliorer la solution selon une approche gloutonne
 	 */
 	public boolean ameliorerSolution() {
-		SolutionAbstract voisinChoisi = null;
+		/*SolutionAbstract voisinChoisi = null;
 		// On stocke la valeur de la solution courante
 		double valeurInitiale = valeur();
 
@@ -51,7 +51,27 @@ public class Greedy extends AlgorithmeAbstract {
 
 		// On change la solution courante
 		solutionEnCours = voisinChoisi;
-		return true;
+		return true;*/
+		boolean fin = false;
+		
+		// voisins de la solution en cours
+		List<SolutionAbstract> voisins = solutionEnCours.retourneVoisinage();
+
+		// on prend le max de ces voisins
+		double min = Integer.MAX_VALUE;
+		double minAvant = min;
+		for (SolutionAbstract v : voisins) {
+			double val = problemeATraiter.evaluation(v);
+			if (val <= min) {
+				min = val;
+				solutionEnCours = v;
+			}
+		}
+		
+		if (min == minAvant)
+			fin = true;
+
+		return fin;
 	}
 
 }

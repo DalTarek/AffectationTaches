@@ -84,7 +84,7 @@ public class SolutionAffectationTaches extends SolutionAbstract {
         return solutions;
     }
 
-    public void affecter(int i) {
+    private void affecter(int i) {
         affectations[profondeurTraitee] = i;
 
         int sommeTempsPersonneI = 0;
@@ -112,14 +112,15 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     public String toString() {
     	StringBuilder sb = new StringBuilder();
     	for (int i = 0; i < problemeATraiter.nbPersonnes; i++) {
-    		sb.append("Personne " + i + " : ");
+    		sb.append("Personne " + (i+1) + " : ");
     		for (int j = 0; j < affectations.length; j++) {
     			if (affectations[j] == i) {
     				sb.append(j + " ");
     			}	
     		}
-    		sb.append("\n");
+    		sb.append("\n");		
     	}
+    	sb.append("Temps total = " + tempsTotal + "\n");
     	
     	return sb.toString();
     }
