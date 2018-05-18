@@ -11,7 +11,7 @@ public class Test_Greedy {
 	
 	public static void main(String[] args) {
 		// on crée le problème
-		ProblemeAffectationTaches probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeSimple());
+		ProblemeAffectationTaches probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeMoinsSimple());
 		
 		SolutionAffectationTaches s = new SolutionAffectationTaches(probleme);
 		

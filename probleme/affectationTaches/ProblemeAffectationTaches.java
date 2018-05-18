@@ -31,9 +31,7 @@ public class ProblemeAffectationTaches implements ProblemeAbstract {
      * @param t : nombre de taches
      * @param t : temps mis par chaque personne pour chaque taches
      */
-    public ProblemeAffectationTaches(/*int p, int t, */Tableau tab) {
-        /*nbTaches = t;
-        nbPersonnes = p;*/
+    public ProblemeAffectationTaches(Tableau tab) {
         tempsPourTaches = tab;
         nbTaches = tab.tableauTemps[0].length;
         nbPersonnes = tab.tableauTemps.length;

@@ -82,7 +82,6 @@ public abstract class AlgorithmeAbstract {
 	 * @return par defaut la valeur
 	 */
 	public String log() {
-		//return "" + problemeATraiter.evaluation(getSolutionEnCours());
 		return solutionEnCours.toString();
 	}
 
