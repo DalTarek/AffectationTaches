@@ -31,7 +31,7 @@ public class SolutionAffectationTaches extends SolutionAbstract {
     /**
      * @param n : nombre de taches a affecter
      */
-    public SolutionAffectationTaches(int n) {
+    /*public SolutionAffectationTaches(int n) {
         affectations = new int[n];
         for (int i = 0; i < n; i++) {
             affectations[i] = -1;
@@ -39,6 +39,18 @@ public class SolutionAffectationTaches extends SolutionAbstract {
 
         tempsTotal = 0;
         profondeurTraitee = 0;
+    }*/
+    
+    public SolutionAffectationTaches(ProblemeAffectationTaches p) {
+    	int nbTaches = p.nbTaches;
+    	affectations = new int[nbTaches];
+        for (int i = 0; i < nbTaches; i++) {
+            affectations[i] = -1;
+        }
+
+        tempsTotal = 0;
+        profondeurTraitee = 0;
+        problemeATraiter = p;
     }
 
     /**
@@ -95,6 +107,21 @@ public class SolutionAffectationTaches extends SolutionAbstract {
      */
     public boolean estComplete() {
         return profondeurTraitee == problemeATraiter.nbPersonnes;
+    }
+    
+    public String toString() {
+    	StringBuilder sb = new StringBuilder();
+    	for (int i = 0; i < problemeATraiter.nbPersonnes; i++) {
+    		sb.append("Personne " + i + " : ");
+    		for (int j = 0; j < affectations.length; j++) {
+    			if (affectations[j] == i) {
+    				sb.append(j + " ");
+    			}	
+    		}
+    		sb.append("\n");
+    	}
+    	
+    	return sb.toString();
     }
 
 }
