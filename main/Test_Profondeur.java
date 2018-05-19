@@ -8,14 +8,40 @@ import algorithmes.AlgorithmeParcoursProfondeur;
 
 public class Test_Profondeur {
 	public static void main(String[] args) {
-		System.out.println("Profondeur problème moins simple");
-		// on cr�e le probl�me
-		ProblemeAffectationTaches probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeMoinsSimple());
+		ProblemeAffectationTaches probleme = null;
+
+		if (args.length == 1 && args[0].equals("1")) {
+			System.out.println("Profondeur problème simple");
+			// on cr�e le probl�me
+			probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeSimple());
+		}
 		
-		// on cr�e l'algorithme
-		AlgorithmeAbstract profondeur = new AlgorithmeParcoursProfondeur(probleme);
-		
-		SolutionPartielle resultat = profondeur.construireMeilleur();
-		System.out.println(resultat);
+		if (args.length == 1 && args[0].equals("2")) {
+			System.out.println("Profondeur problème moins simple");
+			// on cr�e le probl�me
+			probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeMoinsSimple());
+		}
+
+		if (args.length == 1 && args[0].equals("3")) {
+			System.out.println("Profondeur problème complexe");
+			// on cr�e le probl�me
+			probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeComplexe());
+		}
+
+		if (args.length == 1 && args[0].equals("4")) {
+			System.out.println("Profondeur problème aleatoire");
+			// on cr�e le probl�me
+			probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeAleatoire());
+		}
+
+		if (args.length == 1) {
+			// on cr�e l'algorithme
+			AlgorithmeAbstract profondeur = new AlgorithmeParcoursProfondeur(probleme);
+			
+			SolutionPartielle resultat = profondeur.construireMeilleur();
+			System.out.println(resultat);
+		} else {
+			System.out.println("Argument nécessaire pour choisir la difficulté du problème");
+		}
 	}
 }

@@ -10,15 +10,41 @@ import algorithmes.AlgorithmeBranchAndBound;
 public class Test_BranchAndBound {
 	
 	public static void main(String[] args) {
-		System.out.println("Branche and Bound problème moins simple");
-		// on cr�e le probl�me
-		ProblemeAffectationTaches probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeMoinsSimple());
+		ProblemeAffectationTaches probleme = null;
+		
+		if (args.length == 1 && args[0].equals("1")) {
+			System.out.println("Branche and Bound problème simple");
+			// on cr�e le probl�me
+			probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeSimple());
+		}
 
-		Heuristique_MinTempsTotal h = new Heuristique_MinTempsTotal();
-		// on cr�e l'algorithme
-		AlgorithmeAbstract branch = new AlgorithmeBranchAndBound(probleme, h);
+		if (args.length == 1 && args[0].equals("2")) {
+			System.out.println("Branche and Bound problème moins simple");
+			// on cr�e le probl�me
+			probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeMoinsSimple());
+		}
 
-		SolutionPartielle resultat = branch.construireMeilleur();
-		System.out.println(resultat);
+		if (args.length == 1 && args[0].equals("3")) {
+			System.out.println("Branche and Bound problème complexe");
+			// on cr�e le probl�me
+			probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeComplexe());
+		}
+
+		if (args.length == 1 && args[0].equals("4")) {
+			System.out.println("Branche and Bound problème aleatoire");
+			// on cr�e le probl�me
+			probleme = new ProblemeAffectationTaches(Tableau.initialiseProblemeAleatoire());
+		}
+
+		if (args.length == 1) {
+			Heuristique_MinTempsTotal h = new Heuristique_MinTempsTotal();
+			// on cr�e l'algorithme
+			AlgorithmeAbstract branch = new AlgorithmeBranchAndBound(probleme, h);
+
+			SolutionPartielle resultat = branch.construireMeilleur();
+			System.out.println(resultat);
+		} else {
+			System.out.println("Argument nécessaire pour choisir la difficulté du problème");
+		}
 	}
 }
