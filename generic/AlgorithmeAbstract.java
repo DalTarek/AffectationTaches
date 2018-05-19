@@ -1,5 +1,8 @@
 package generic;
 
+import java.io.File;
+import java.io.FileWriter;
+
 /**
  * algoritghme abstrait à partir duquel construire les algorithmes
  * 
@@ -25,6 +28,6 @@ public abstract class AlgorithmeAbstract {
 	 * construit la meilleure solution au probleme
 	 * @return Solution optimale
 	 */
-	public abstract SolutionPartielle construireMeilleur();
+	public abstract SolutionPartielle construireMeilleur(FileWriter f);
 
 }

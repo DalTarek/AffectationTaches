@@ -1,5 +1,7 @@
 package algorithmes;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.PriorityQueue;
 
 import generic.AlgorithmeAbstract;
@@ -17,9 +19,7 @@ public class AlgorithmeAEtoile extends AlgorithmeAbstract {
 	}
 
 	@Override
-	public SolutionPartielle construireMeilleur() {
-
-		int i = 0;
+	public SolutionPartielle construireMeilleur(FileWriter f) {
 		
 		SolutionPartielle solutionEnCours = this.problemeAResoudre
 				.solutionInitiale();
@@ -56,14 +56,22 @@ public class AlgorithmeAEtoile extends AlgorithmeAbstract {
 				atraiter.add(valEtoile);
 			}
 			
-			i++;
+			this.compteur++;
 
-			if (i % 10000 == 0)
+			if (this.compteur % 1000 == 0) {
 				// afficher le nb iterations tous les 1000 pas de temps
-				System.out.println("nombre iteration:" + i);
+				//System.out.println("nombre iteration:" + this.compteur);
+			}
+
+			try{
+				f.append("" + compteur + " " 
+						+ this.problemeAResoudre.evaluer(meilleureTrouvee) + "\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		
-		System.out.println("nombre iteration:" + i);
+		System.out.println("nombre iteration:" + this.compteur);
 
 		return meilleureTrouvee;
 	}

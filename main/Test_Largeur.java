@@ -6,6 +6,10 @@ import probleme.affectationTaches.ProblemeAffectationTaches;
 import probleme.affectationTaches.Tableau;
 import algorithmes.AlgorithmeParcoursLargeur;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Test_Largeur {
 	public static void main(String[] args) {
 		ProblemeAffectationTaches probleme = null;
@@ -37,9 +41,23 @@ public class Test_Largeur {
 		if (args.length == 1) {
 			// on cr�e l'algorithme
 			AlgorithmeAbstract largeur = new AlgorithmeParcoursLargeur(probleme);
+
+			FileWriter f = null;
+			try {
+				f = new FileWriter(new File("resultats_Largeur"));
+				f.append("valeur iterations\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
-			SolutionPartielle resultat = largeur.construireMeilleur();
+			SolutionPartielle resultat = largeur.construireMeilleur(f);
 			System.out.println(resultat);
+
+			try {
+				f.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
 		} else {
 			System.out.println("Argument nécessaire pour choisir la difficulté du problème");
 		}

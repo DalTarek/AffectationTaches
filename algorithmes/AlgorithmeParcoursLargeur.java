@@ -1,5 +1,7 @@
 package algorithmes;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Timer;
@@ -31,9 +33,7 @@ public class AlgorithmeParcoursLargeur extends AlgorithmeAbstract {
 	/**
 	 * construit la meilleure solution
 	 */
-	public SolutionPartielle construireMeilleur() {
-		
-		int i = 0;
+	public SolutionPartielle construireMeilleur(FileWriter f) {
 
 		// construit liste des solutions a tester
 		LinkedList<SolutionPartielle> ouverte = new LinkedList<SolutionPartielle>();
@@ -59,14 +59,21 @@ public class AlgorithmeParcoursLargeur extends AlgorithmeAbstract {
 				}
 			}
 			
-			i++;
+			this.compteur++;
 		
-			if (i % 10000 == 0) 
-			// afficher le nb iterations tous les 1000 pas de temps
-				System.out.println("nombre iteration:" + i);		
+			if (this.compteur % 1000 == 0) {
+				// afficher le nb iterations tous les 1000 pas de temps
+				// System.out.println("nombre iteration:" + this.compteur);
+				try  {
+					f.append("" + compteur + " " 
+						+ this.problemeAResoudre.evaluer(solutionCourante) + "\n");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}		
 		}
 		
-		System.out.println("nombre iteration:" + i);
+		System.out.println("nombre iteration:" + this.compteur);
 
 		// retourner la meilleure solution complete
 		SolutionPartielle meilleure = chercherMeilleureSolution(complete);

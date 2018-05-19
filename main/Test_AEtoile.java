@@ -7,6 +7,12 @@ import probleme.affectationTaches.ProblemeAffectationTaches;
 import probleme.affectationTaches.Tableau;
 import algorithmes.AlgorithmeAEtoile;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+
+
 public class Test_AEtoile {
 
 	public static void main(String[] args) {
@@ -41,9 +47,23 @@ public class Test_AEtoile {
 				
 			// on cr�e l'algorithme
 			AlgorithmeAbstract aEtoile = new AlgorithmeAEtoile(probleme, h);
+
+			FileWriter f = null;
+			try {
+				f = new FileWriter(new File("resultats_AEtoile"));
+				f.append("valeur iterations\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
-			SolutionPartielle resultat = aEtoile.construireMeilleur();
+			SolutionPartielle resultat = aEtoile.construireMeilleur(f);
 			System.out.println(resultat);
+
+			try {
+				f.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
 		} else {
 			System.out.println("Argument nécessaire pour choisir la difficulté du problème");
 		}

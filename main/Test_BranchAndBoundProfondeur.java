@@ -7,6 +7,10 @@ import probleme.affectationTaches.ProblemeAffectationTaches;
 import probleme.affectationTaches.Tableau;
 import algorithmes.AlgorithmeBranchAndBoundProfondeur;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Test_BranchAndBoundProfondeur {
 	
 	public static void main(String[] args) {
@@ -41,8 +45,22 @@ public class Test_BranchAndBoundProfondeur {
 			// on cr�e l'algorithme
 			AlgorithmeAbstract branch = new AlgorithmeBranchAndBoundProfondeur(probleme, h);
 
-			SolutionPartielle resultat = branch.construireMeilleur();
+			FileWriter f = null;
+			try {
+				f = new FileWriter(new File("resultats_BranchAndBoundProf"));
+				f.append("valeur iterations\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			SolutionPartielle resultat = branch.construireMeilleur(f);
 			System.out.println(resultat);
+
+			try {
+				f.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} 
 		} else {
 			System.out.println("Argument nécessaire pour choisir la difficulté du problème");
 		}

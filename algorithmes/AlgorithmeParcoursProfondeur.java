@@ -1,12 +1,13 @@
 package algorithmes;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import generic.AlgorithmeAbstract;
 import generic.Problem;
 import generic.SolutionPartielle;
 
 public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
-
-	static int compteur = 0;
 
 	public AlgorithmeParcoursProfondeur(Problem p) {
 		super(p);
@@ -16,9 +17,9 @@ public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
 	/**
 	 * cherche la meilleure solution par appels récursifs
 	 */
-	public SolutionPartielle construireMeilleur() {
-		SolutionPartielle s = (calculerMax(this.problemeAResoudre.solutionInitiale()));
-		System.out.println("Nombre d'itérations : " + compteur);
+	public SolutionPartielle construireMeilleur(FileWriter f) {
+		SolutionPartielle s = (calculerMax(this.problemeAResoudre.solutionInitiale(), f));
+		System.out.println("Nombre d'itérations : " + this.compteur);
 		return s;
 	}
 
@@ -32,9 +33,9 @@ public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
 	 *            solution partielle dont on souhaite la meilleure solution
 	 * @return meilleure solution en dessous de la solution initiale
 	 */
-	private SolutionPartielle calculerMax(SolutionPartielle solutionInitiale) {
+	private SolutionPartielle calculerMax(SolutionPartielle solutionInitiale, FileWriter f) {
 
-		compteur++;
+		this.compteur++;
 
 		// on arrete la recursion si on est sur une solution valide
 		if (solutionInitiale.estComplete())
@@ -48,12 +49,23 @@ public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
 		for (SolutionPartielle solutionAEtudier : solutionVoisines) {
 			// trouve la meilleure solution complete à partir du fils
 			// par appel recusrif
-			SolutionPartielle meilleureFille = calculerMax(solutionAEtudier);
+			SolutionPartielle meilleureFille = calculerMax(solutionAEtudier, f);
 			// regarde si cette solution complete est la meilleure
 			double evaluation = this.problemeAResoudre.evaluer(meilleureFille);
 			if (evaluation < min) {
 				min = evaluation;
 				meilleureGlobale = meilleureFille;
+			}
+
+			if (this.compteur % 1000 == 0) {
+				// afficher le nb iterations tous les 1000 pas de temps
+				// System.out.println("nombre iteration:" + this.compteur);
+				try {
+					f.append("" + this.compteur + " " 
+						+ this.problemeAResoudre.evaluer(meilleureFille) + "\n");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 

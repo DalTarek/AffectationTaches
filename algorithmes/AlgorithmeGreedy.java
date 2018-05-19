@@ -1,5 +1,8 @@
 package algorithmes;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import generic.AlgorithmeAbstract;
 import generic.Problem;
 import generic.SolutionPartielle;
@@ -11,7 +14,7 @@ public class AlgorithmeGreedy extends AlgorithmeAbstract {
 	}
 
 	@Override
-	public SolutionPartielle construireMeilleur() {
+	public SolutionPartielle construireMeilleur(FileWriter f) {
 
 		SolutionPartielle enCours = this.problemeAResoudre.solutionInitiale();
 		
@@ -34,6 +37,18 @@ public class AlgorithmeGreedy extends AlgorithmeAbstract {
 			this.compteur++;
 			
 			enCours = meilleureSolution;
+
+			if (this.compteur % 1000 == 0) {
+				// afficher le nb iterations tous les 1000 pas de temps
+				// System.out.println("nombre iteration:" + this.compteur);
+			}
+
+			try {
+				f.append("" + compteur + " " 
+					+ this.problemeAResoudre.evaluer(enCours) + "\n");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		System.out.println("Nombre d'itérations : " + this.compteur);
