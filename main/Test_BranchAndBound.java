@@ -47,8 +47,8 @@ public class Test_BranchAndBound {
 
 			FileWriter f = null;
 			try {
-				f = new FileWriter(new File("resultats_BranchandBound"));
-				f.append("valeur iterations\n");
+				f = new FileWriter(new File("resultats_BranchandBound.dat"));
+				f.append("# valeur iterations\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

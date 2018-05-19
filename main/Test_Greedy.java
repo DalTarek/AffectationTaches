@@ -45,8 +45,8 @@ public class Test_Greedy {
 
 			FileWriter f = null;
 			try {
-				f = new FileWriter(new File("resultats_Greedy"));
-				f.append("valeur iterations\n");
+				f = new FileWriter(new File("resultats_Greedy.dat"));
+				f.append("# valeur iterations\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

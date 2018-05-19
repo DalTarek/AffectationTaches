@@ -50,8 +50,8 @@ public class Test_AEtoile {
 
 			FileWriter f = null;
 			try {
-				f = new FileWriter(new File("resultats_AEtoile"));
-				f.append("valeur iterations\n");
+				f = new FileWriter(new File("resultats_AEtoile.dat"));
+				f.append("# valeur iterations\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

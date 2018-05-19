@@ -44,8 +44,8 @@ public class Test_LargeurFiltre {
 
 			FileWriter f = null;
 			try {
-				f = new FileWriter(new File("resultats_LargeurFiltre"));
-				f.append("valeur iterations\n");
+				f = new FileWriter(new File("resultats_LargeurFiltre.dat"));
+				f.append("# valeur iterations\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

@@ -44,8 +44,8 @@ public class Test_Profondeur {
 
 			FileWriter f = null;
 			try {
-				f = new FileWriter(new File("resultats_Profondeur"));
-				f.append("valeur iterations\n");
+				f = new FileWriter(new File("resultats_Profondeur.dat"));
+				f.append("# valeur iterations\n");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
