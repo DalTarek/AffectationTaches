@@ -38,8 +38,9 @@ public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
 		this.compteur++;
 
 		// on arrete la recursion si on est sur une solution valide
-		if (solutionInitiale.estComplete())
+		if (solutionInitiale.estComplete()) {
 			return (solutionInitiale);
+		}
 
 		// sinon on cherche la meilleure solution sur le meilleur fils
 		SolutionPartielle[] solutionVoisines = solutionInitiale.solutionsVoisines();
@@ -60,12 +61,6 @@ public class AlgorithmeParcoursProfondeur extends AlgorithmeAbstract {
 			if (this.compteur % 1000 == 0) {
 				// afficher le nb iterations tous les 1000 pas de temps
 				// System.out.println("nombre iteration:" + this.compteur);
-				try {
-					f.append("" + this.compteur + " " 
-						+ this.problemeAResoudre.evaluer(meilleureFille) + "\n");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
 			}
 		}
 
